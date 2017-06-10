@@ -38,5 +38,5 @@ Th resulting svm model as well as its related files will be located in the folde
 
 [modelPath] and [filePath] are the path to the trained model file and the path to the audio file to be processed.
 
-- The output will be print to stdout, and it will be a list of zeros and ones, which is the segmentation result. (0 stands for voice, 1 stands for noise)
+- The output will be print to stdout, and it will be a list of zeros and ones, which is the segmentation result. (0 stands for voice, 1 stands for noise) Each single number represents the audio chunk of the model's step size in order.
 - If an 'unknown format" error message pops up during the process, this is probably due to sampling rate of a audio file is higher than 48K is not supported. In this case, try to uncomment all of the commented code and redo the process.
