@@ -8,7 +8,7 @@ import sys
 modelPath = sys.argv[1]         # Command line argument 1 is the path of the final model.
 filePath = sys.argv[2]          # Command line argument 2 is the path of the audio file.
 
-stepSize = 3
+stepSize = sys.argv[3]
 
 '''
 FLAG_CONVERT_SR = False
