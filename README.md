@@ -53,6 +53,6 @@ The output will be print to stdout, its format will be the same as the following
 
 - 0.00 - 0.35 : Voice, 0.35 - 3.40 : Noise
 
-The float number's time unit is minute, for example 0.50 means 30 sec, 1.5 means 1 min and 30 sec.
+The float number's time unit is in minutes, for example 0.50 means 30 sec, 1.5 means 1 min and 30 sec.
 
 
