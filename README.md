@@ -38,5 +38,21 @@ Th resulting svm model as well as its related files will be located in the folde
 
 [modelPath] and [filePath] are the path to the trained model file and the path to the audio file to be processed.
 
-- The output will be print to stdout, and it will be a list of zeros and ones, which is the segmentation result. (0 stands for voice, 1 stands for noise) Each single number represents the audio chunk of the model's step size in order.
-- If an 'unknown format" error message pops up during the process, this is probably due to sampling rate of a audio file is higher than 48K is not supported. In this case, try to uncomment all of the commented code and redo the process.
+The output will be print to stdout, and it will be a list of zeros and ones, which is the segmentation result. (0 stands for voice, 1 stands for noise) Each single number represents the audio chunk of the model's step size in order.
+
+If an 'unknown format" error message pops up during the process, this is probably due to sampling rate of a audio file is higher than 48K is not supported. In this case, try to uncomment all of the commented code and redo the process.
+
+
+# Run the processing script with fomratted output
+
+- python script.py [modelPath] [filePath] [stepSize]
+
+Command line arguments are the same with the older version script except for an extra argument [stepSize] which must be the stepSize of the tranied model. Wrong step size in the command line argument will lead to incorrect output.
+
+The output will be print to stdout, its format will be the same as the following sample output:
+
+- 0.00 - 0.35 : Voice, 0.35 - 3.40 : Noise
+
+The float number's time unit is minute, for example 0.50 means 30 sec, 1.5 means 1 min and 30 sec.
+
+
