@@ -45,7 +45,7 @@ If an 'unknown format" error message pops up during the process, this is probabl
 
 # Run the processing script with fomratted output
 
-- python script.py [modelPath] [filePath] [stepSize]
+- python script2.py [modelPath] [filePath] [stepSize]
 
 Command line arguments are the same with the older version script except for an extra argument [stepSize] which must be the stepSize of the tranied model. Wrong step size in the command line argument will lead to incorrect output.
 
