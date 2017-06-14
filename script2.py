@@ -4,13 +4,14 @@ from os import path
         
 import os
 import sys
+import wave
         
 modelPath = sys.argv[1]         # Command line argument 1 is the path of the final model.
 filePath = sys.argv[2]          # Command line argument 2 is the path of the audio file.
 
 stepSize = sys.argv[3]
 
-'''
+
 FLAG_CONVERT_SR = False
 
 print >> sys.stderr, 'Processing '+filePath.split("/")[-1]+'...'
@@ -26,14 +27,14 @@ if FLAG_CONVERT_SR:
     print >> sys.stderr, "Sampling rate too large, converting to 48K as tmp.wav..."
     os.system('ffmpeg -i ' + filePath + ' -ar 48000 tmp.wav')
     filePath = 'tmp.wav'
-'''
+
 [flagsInd, classesAll, acc, CM] = aS.mtFileClassification(filePath, modelPath, 'svm', False)
 
-'''
+
 if FLAG_CONVERT_SR:
     print >> sys.stderr, "Removing tmp.wav"
     os.remove('tmp.wav')
-'''
+
 
 resStr = ''
 
@@ -58,24 +59,22 @@ for chunkRes in flagsInd:
         
     else: 
         if FLAG_V and (chunkRes == 1):
-            resStr += str(changeToMin(prevChangeIndex)) + ' - ' +str(changeToMin(currentTimeIndex)) + ' : Voice, '
+            resStr += str(changeToMin(prevChangeIndex)) + ' - ' +str(changeToMin(currentTimeIndex)) + ','
             prevChangeIndex = currentTimeIndex
-            
             FLAG_V = False
             
         elif (FLAG_V == False) and (chunkRes == 0):
-            resStr += str(changeToMin(prevChangeIndex)) + ' - ' +str(changeToMin(currentTimeIndex)) + ' : Noise, '
             prevChangeIndex = currentTimeIndex
-            
             FLAG_V = True
             
         if currentTimeIndex == len(flagsInd) - 1 :
             if FLAG_V:
-                resStr += str(changeToMin(prevChangeIndex)) + ' - ' +str(changeToMin(currentTimeIndex + 1)) + ' : Voice'
-            else:
-                resStr += str(changeToMin(prevChangeIndex)) + ' - ' +str(changeToMin(currentTimeIndex + 1)) + ' : Noise'        
+                resStr += str(changeToMin(prevChangeIndex)) + ' - ' +str(changeToMin(currentTimeIndex + 1))   
         
     currentTimeIndex += 1
+
+if resStr[-1] == ',':
+    resStr = resStr[:-1]
             
 resStr += '\n'
     
