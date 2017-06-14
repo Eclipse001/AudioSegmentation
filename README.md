@@ -51,8 +51,9 @@ Command line arguments are the same with the older version script except for an 
 
 The output will be print to stdout, its format will be the same as the following sample output:
 
-- 0.00 - 0.35 : Voice, 0.35 - 3.40 : Noise
+- 0.00 - 0.35,0.35 - 3.40
 
+The list of time stamps separate by comma stands for the audio block which is not noise.
 The float number's time unit is in minutes, for example 0.50 means 30 sec, 1.5 means 1 min and 30 sec.
 
 
