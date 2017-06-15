@@ -23,14 +23,18 @@ Use pip to install dependencies of pyAudioAnalysis:
 
 # Run the training script
 
-- python train.py [midtermWindow] [midtermStep]
+- python train.py [midtermWindow] [midtermStep] [voiceFolderPath] [noiseFolderPath] [tVoiceFolderPath] [tNoiseFolderPath]
 
 [midtermWindow] and [midtermStep] are the mid-term block size and step size used while training the classifier from the samples. (In seconds)
+
+[voiceFolderPath] and [noiseFolderPath] are the path of the folders contain the orginal training samples, there must be an ending slash in both of these arguments. For example: 'OrginalSamples/Voice' will cause error but 'OrginalSamples/Voice/' won't cause error.
+
+[tVoiceFolderPath] [tNoiseFolderPath] are the path of the folders will contain the training samples that will actually used for training, that is, the copies of content inside [goodFolderPath] and [badFolderPath]. This is to prevent any modification of the original files while reducing the audio file's sampling rate. These two path must be exist before running the training script. Also, files inside these two folders will be removed after training. Same as previous arguments, there must be an ending slash in both of these arguments.
+
 Th resulting svm model as well as its related files will be located in the folder named 'Models', the model file name will be 'svm'. 
 
 - The new trained model will replace the previous one.
 - The model type is SVM.
-- If an 'unknown format" error message pops up during the training, this is probably due to sampling rate of a audio file is higher than 48K is not supported. In this case, try to uncomment the line 45 and 46 inside the train.py and redo the training.
 
 # Run the processing script
 
